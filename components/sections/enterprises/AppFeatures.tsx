@@ -20,7 +20,11 @@ export default function AppFeatures() {
         </div>
         <div className="grid w-full gap-x-10 gap-y-7 md:grid-cols-2 md:gap-y-9 lg:grid-cols-3 lg:grid-rows-[auto_196px_auto]">
           {features.map((f) => (
-            <div key={f.title} className="flex gap-4 md:flex-col">
+            // The odd seventh card sits centred on its own row (client request, 1 Nov 2026)
+            <div
+              key={f.title}
+              className="flex gap-4 md:flex-col md:last:col-span-2 md:last:w-[calc(50%-20px)] md:last:justify-self-center lg:last:col-span-1 lg:last:col-start-2 lg:last:w-auto"
+            >
               <IconBox icon={f.icon} />
               <div className="flex flex-col gap-1">
                 <h3 className="text-xl leading-8 font-semibold">{f.title}</h3>

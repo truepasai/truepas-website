@@ -38,7 +38,7 @@ export default function Dashboard() {
             </div>
           </div>
           <div>
-            <BookDemoButton>Request a Dashboard Demonstration</BookDemoButton>
+            <BookDemoButton>Request Dashboard Demo</BookDemoButton>
           </div>
         </div>
         <Photo

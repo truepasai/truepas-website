@@ -44,7 +44,7 @@ export default function Integrations() {
             </div>
             <div>
               <Button variant="secondary" icon href="/contact?inquiry=api-integration#inquiry">
-                Speak with an Integration Specialist
+                Contact Integration Team
               </Button>
             </div>
           </div>

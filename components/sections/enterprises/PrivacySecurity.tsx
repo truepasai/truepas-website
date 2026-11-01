@@ -22,7 +22,11 @@ export default function PrivacySecurity() {
         </div>
         <div className="grid w-full gap-x-10 gap-y-7 md:grid-cols-2 md:gap-y-10 lg:grid-cols-3">
           {items.map((it) => (
-            <div key={it.title} className="flex gap-4 md:flex-col">
+            // The odd seventh card sits centred on its own row (client request, 1 Nov 2026)
+            <div
+              key={it.title}
+              className="flex gap-4 md:flex-col md:last:col-span-2 md:last:w-[calc(50%-20px)] md:last:justify-self-center lg:last:col-span-1 lg:last:col-start-2 lg:last:w-auto"
+            >
               <IconBox icon={it.icon} />
               <div className="flex flex-col gap-1">
                 <h3 className="text-xl leading-8 font-semibold">{it.title}</h3>
@@ -41,7 +45,7 @@ export default function PrivacySecurity() {
             </span>
           }
         >
-          Learn About Privacy and Security
+          Read Privacy Policy
         </Button>
       </div>
     </section>
