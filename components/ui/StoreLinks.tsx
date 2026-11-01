@@ -25,48 +25,15 @@ export function PlayLogo({ className = "size-7" }: { className?: string }) {
   );
 }
 
-function StoreBadge({ href, logo, small, store }: { href: string | null; logo: React.ReactNode; small: string; store: string }) {
-  const body = (
-    <>
-      {logo}
-      <span className="flex flex-col text-left">
-        <span className="text-[11px] leading-3">{small}</span>
-        <span className="text-xl leading-6 font-semibold">{store}</span>
-      </span>
-    </>
-  );
-  const box = "flex h-16 min-w-[200px] items-center gap-3 rounded-xl border border-line bg-white px-5";
-  return href ? (
-    <a href={href} target="_blank" rel="noopener noreferrer" className={`${box} transition-colors hover:border-primary`}>
-      {body}
-    </a>
-  ) : (
-    <div className={`${box} relative`} aria-label={`${store}: coming soon`}>
-      {body}
-      <span className="absolute -top-2.5 right-3 rounded-full bg-sky-100 px-2 py-0.5 text-[11px] leading-4 font-semibold text-primary">
-        Coming soon
-      </span>
-    </div>
-  );
-}
-
-// "Download on the App Store" / "Get it on Google Play" badges (download dialog, Users use cases)
-export function StoreBadges({ className = "flex flex-wrap gap-4" }: { className?: string }) {
-  return (
-    <div className={className}>
-      <StoreBadge href={APP_STORE_URL} logo={<AppleLogo />} small="Download on the" store="App Store" />
-      <StoreBadge href={PLAY_STORE_URL} logo={<PlayLogo />} small="GET IT ON" store="Google Play" />
-    </div>
-  );
-}
-
 const stores = [
-  { name: "App Store", on: "the App Store", url: APP_STORE_URL, logo: <AppleLogo className="size-6" /> },
-  { name: "Google Play", on: "Google Play", url: PLAY_STORE_URL, logo: <PlayLogo className="size-6" /> },
+  { name: "App Store", on: "the App Store", small: "Download on the", url: APP_STORE_URL, logo: AppleLogo },
+  { name: "Google Play", on: "Google Play", small: "GET IT ON", url: PLAY_STORE_URL, logo: PlayLogo },
 ];
 
-// Icon-only store links (Users hero). Without a store URL a click shows a short notice instead
-export function StoreIconLinks() {
+// "Download on the App Store" / "Get it on Google Play" badges (download dialog, Users hero and use cases).
+// Every badge is clickable (client feedback, 1 Nov 2026): without a store URL a click shows a short "coming soon" notice
+// (no "Coming soon" tag on the badge itself, on request)
+export function StoreBadges({ className = "flex flex-wrap gap-4", size = "md" }: { className?: string; size?: "sm" | "md" }) {
   const [notice, setNotice] = useState<string | null>(null);
 
   useEffect(() => {
@@ -75,32 +42,42 @@ export function StoreIconLinks() {
     return () => window.clearTimeout(t);
   }, [notice]);
 
+  const box =
+    size === "sm"
+      ? "flex h-12 min-w-[164px] items-center gap-2.5 rounded-xl border border-line bg-white px-4 transition-colors hover:border-primary"
+      : "flex h-16 min-w-[200px] items-center gap-3 rounded-xl border border-line bg-white px-5 transition-colors hover:border-primary";
+
   return (
     <>
-      <div className="flex items-center gap-2">
-        {stores.map((s) => (
-          <a
-            key={s.name}
-            href={s.url ?? "#"}
-            aria-label={s.name}
-            {...(s.url ? { target: "_blank", rel: "noopener noreferrer" } : {})}
-            onClick={(e) => {
-              if (s.url) return;
-              e.preventDefault();
-              setNotice(`The TruePas app is coming soon to ${s.on}.`);
-            }}
-            className="flex size-10 items-center justify-center rounded-lg transition-colors hover:bg-white/70"
-          >
-            {s.logo}
-          </a>
-        ))}
+      <div className={className}>
+        {stores.map((s) => {
+          const Logo = s.logo;
+          const body = (
+            <>
+              <Logo className={size === "sm" ? "size-6" : "size-7"} />
+              <span className="flex flex-col text-left">
+                <span className="text-[11px] leading-3">{s.small}</span>
+                <span className={`font-semibold ${size === "sm" ? "text-base leading-5" : "text-xl leading-6"}`}>{s.name}</span>
+              </span>
+            </>
+          );
+          return s.url ? (
+            <a key={s.name} href={s.url} target="_blank" rel="noopener noreferrer" className={box}>
+              {body}
+            </a>
+          ) : (
+            <button key={s.name} type="button" onClick={() => setNotice(`The TruePas app is coming soon to ${s.on}.`)} className={`${box} cursor-pointer`}>
+              {body}
+            </button>
+          );
+        })}
       </div>
       <p
         role="status"
         aria-live="polite"
         className={
           notice
-            ? "fixed inset-x-5 bottom-6 z-[60] mx-auto w-fit max-w-[480px] rounded-lg bg-ink-2 px-5 py-3 text-center text-base leading-6 text-white shadow-card-strong"
+            ? "fixed inset-x-5 bottom-6 z-[110] mx-auto w-fit max-w-[480px] rounded-lg bg-ink-2 px-5 py-3 text-center text-base leading-6 text-white shadow-card-strong"
             : "sr-only"
         }
       >

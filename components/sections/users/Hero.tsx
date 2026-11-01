@@ -1,6 +1,6 @@
 import BrandLogo from "@/components/ui/BrandLogo";
 import Photo from "@/components/ui/Photo";
-import { StoreIconLinks } from "@/components/ui/StoreLinks";
+import { StoreBadges } from "@/components/ui/StoreLinks";
 import VideoPlayer from "@/components/ui/VideoPlayer";
 
 export default function Hero() {
@@ -33,11 +33,9 @@ export default function Hero() {
             <BrandLogo height={22} className="h-[22px]" />
             {/* Figma's "4.9 (1.5k reviews)" rating is hidden at the client's request until there are real reviews */}
           </div>
-          {/* Figma's "Download the app" button is removed on request (23 Oct 2026); the store icons link straight to the stores */}
-          <div className="flex items-center gap-3">
-            <span className="text-base leading-6 whitespace-nowrap text-[#525455]">Available on</span>
-            <StoreIconLinks />
-          </div>
+          {/* Figma's "Download the app" button is removed on request (23 Oct 2026). Full store badges replace the bare
+              store icons, which didn't read as clickable (client feedback, 1 Nov 2026) */}
+          <StoreBadges size="sm" className="flex flex-wrap gap-3" />
         </div>
 
         <VideoPlayer className="aspect-video w-full" />
