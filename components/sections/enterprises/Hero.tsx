@@ -1,5 +1,5 @@
 import BookDemoButton from "@/components/ui/BookDemoButton";
-import Button from "@/components/ui/Button";
+import Button, { pairedButton } from "@/components/ui/Button";
 import Photo from "@/components/ui/Photo";
 
 export default function Hero() {
@@ -16,17 +16,18 @@ export default function Hero() {
               Customers enroll once. Businesses verify instantly.
             </p>
           </div>
-          <div className="flex flex-wrap gap-4">
-            <BookDemoButton />
-            <Button variant="secondary" href="/businesses">
+          <div className="flex flex-wrap gap-3 md:gap-4">
+            <BookDemoButton className={pairedButton} />
+            <Button variant="secondary" href="/businesses" className={pairedButton}>
               Explore Solutions
             </Button>
           </div>
         </div>
+        {/* Image first on mobile so the CTAs land lower, in thumb reach (client feedback, 5 Nov 2026) */}
         <Photo
           src="/images/enterprises/hero.webp"
           alt="Traveler verifying her identity with a facial scan at an airport self-service kiosk"
-          className="h-64 rounded-2xl shadow-card-strong md:h-[376px] lg:flex-1"
+          className="h-64 rounded-2xl shadow-card-strong max-lg:order-first md:h-[376px] lg:flex-1"
           eager
         />
       </div>

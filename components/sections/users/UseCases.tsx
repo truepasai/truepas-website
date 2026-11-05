@@ -78,7 +78,7 @@ export default function UseCases() {
             </div>
             <div className="flex flex-wrap gap-4">
               {/* Store badges replace Figma's "Download the app" button on request (23 Oct 2026) */}
-              <StoreBadges />
+              <StoreBadges className="flex w-full flex-wrap gap-3 md:w-auto md:gap-4" />
               {/* "Read more" (Figma) is hidden until there are use-case articles to link to: <Button variant="secondary">Read more</Button> */}
             </div>
           </div>

@@ -42,10 +42,10 @@ export function StoreBadges({ className = "flex flex-wrap gap-4", size = "md" }:
     return () => window.clearTimeout(t);
   }, [notice]);
 
-  const box =
-    size === "sm"
-      ? "flex h-12 min-w-[164px] items-center gap-2.5 rounded-xl border border-line bg-white px-4 transition-colors hover:border-primary"
-      : "flex h-16 min-w-[200px] items-center gap-3 rounded-xl border border-line bg-white px-5 transition-colors hover:border-primary";
+  // On phones both sizes are compact and share the row (client feedback, 5 Nov 2026); they wrap below ~360px
+  const box = `flex h-12 items-center gap-2.5 rounded-xl border border-line bg-white px-3 whitespace-nowrap transition-colors hover:border-primary max-md:flex-1 max-md:justify-center ${
+    size === "sm" ? "md:min-w-[164px] md:px-4" : "md:h-16 md:min-w-[200px] md:gap-3 md:px-5"
+  }`;
 
   return (
     <>
@@ -54,10 +54,10 @@ export function StoreBadges({ className = "flex flex-wrap gap-4", size = "md" }:
           const Logo = s.logo;
           const body = (
             <>
-              <Logo className={size === "sm" ? "size-6" : "size-7"} />
+              <Logo className={size === "sm" ? "size-6" : "size-6 md:size-7"} />
               <span className="flex flex-col text-left">
                 <span className="text-[11px] leading-3">{s.small}</span>
-                <span className={`font-semibold ${size === "sm" ? "text-base leading-5" : "text-xl leading-6"}`}>{s.name}</span>
+                <span className={`text-base leading-5 font-semibold ${size === "sm" ? "" : "md:text-xl md:leading-6"}`}>{s.name}</span>
               </span>
             </>
           );

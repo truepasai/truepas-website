@@ -21,10 +21,11 @@ const metrics = [
 export default function Dashboard() {
   return (
     <section className="section-pad bg-sky-50">
-      <div className="container-page flex flex-col gap-10 lg:flex-row">
-        <div className="flex flex-col justify-between gap-8 lg:min-h-[417px] lg:flex-1">
-          <div className="flex flex-col gap-6">
-            <SectionLabel>Merchant Dashboard</SectionLabel>
+      {/* Below lg the text wrappers dissolve (contents) so the image can sit right under the label (client feedback, 5 Nov 2026) */}
+      <div className="container-page flex flex-col gap-6 lg:flex-row lg:gap-10">
+        <div className="flex flex-col justify-between gap-8 max-lg:contents lg:min-h-[417px] lg:flex-1">
+          <div className="flex flex-col gap-6 max-lg:contents">
+            <SectionLabel className="max-lg:order-first">Merchant Dashboard</SectionLabel>
             <div className="flex flex-col gap-4">
               <h2 className="heading-md max-w-[512px]">Every Location, One View</h2>
               <div className="flex flex-col gap-6 text-base leading-6">
@@ -37,14 +38,14 @@ export default function Dashboard() {
               </div>
             </div>
           </div>
-          <div>
+          <div className="flex justify-center max-lg:mt-2 lg:justify-start">
             <BookDemoButton>Request Dashboard Demo</BookDemoButton>
           </div>
         </div>
         <Photo
           src="/images/enterprises/dashboard.webp"
           alt="Manager reviewing the TruePas merchant dashboard with verification and location analytics"
-          className="h-64 rounded-2xl shadow-card-strong md:h-[417px] lg:flex-1"
+          className="h-64 rounded-2xl shadow-card-strong max-lg:order-first md:h-[417px] lg:flex-1"
         />
       </div>
     </section>

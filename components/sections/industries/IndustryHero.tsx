@@ -1,5 +1,5 @@
 import BookDemoButton from "@/components/ui/BookDemoButton";
-import Button from "@/components/ui/Button";
+import Button, { pairedButton } from "@/components/ui/Button";
 import Photo from "@/components/ui/Photo";
 import SectionLabel from "@/components/ui/SectionLabel";
 import type { Industry } from "@/lib/industries";
@@ -15,9 +15,13 @@ export default function IndustryHero({ industry }: { industry: Industry }) {
             <h1 className="heading-xl">{industry.title}</h1>
             <p className="max-w-[468px] text-base leading-6 text-ink-3">{industry.intro}</p>
           </div>
-          <div className="flex flex-wrap gap-4">
-            <BookDemoButton />
-            <Button variant="secondary" href={`/contact?industry=${industry.contact}&inquiry=request-demo#inquiry`}>
+          <div className="flex flex-wrap gap-3 md:gap-4">
+            <BookDemoButton className={pairedButton} />
+            <Button
+              variant="secondary"
+              href={`/contact?industry=${industry.contact}&inquiry=request-demo#inquiry`}
+              className={pairedButton}
+            >
               Talk to Our Team
             </Button>
           </div>

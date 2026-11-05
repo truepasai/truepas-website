@@ -9,12 +9,12 @@ export default function Hero() {
       <div className="container-page flex flex-col gap-10 lg:gap-20">
         <div className="flex flex-col gap-10 lg:flex-row">
           <div className="flex flex-col gap-4 lg:w-[540px] lg:shrink-0">
-            <h1 className="heading-xl">
+            <h1 className="heading-xl text-center lg:text-left">
               One Face.
               <br />
               Infinite Places.
             </h1>
-            <p className="max-w-[468px] text-base leading-6 whitespace-pre-line text-ink-3">
+            <p className="mx-auto max-w-[468px] text-center text-base leading-6 whitespace-pre-line text-ink-3 lg:mx-0 lg:text-left">
               {
                 "In a tech-savvy world, simplicity is expected and security is non-negotiable. When both coexist seamlessly, that's where revolution happens.\n\nTruePas is the inevitable evolution of identity in a connected world: a single, reusable biometric identity, enrolled once and used across airports, hotels, cruise terminals, car rentals, theme parks, venues, and healthcare. Delivered with privacy, security, and full user control."
               }

@@ -42,7 +42,7 @@ export default function Integrations() {
                 platform.
               </p>
             </div>
-            <div>
+            <div className="flex justify-center lg:justify-start">
               <Button variant="secondary" icon href="/contact?inquiry=api-integration#inquiry">
                 Contact Integration Team
               </Button>

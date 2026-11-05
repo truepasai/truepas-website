@@ -37,8 +37,12 @@ export function DownloadIcon({ className = "size-5" }: { className?: string }) {
   );
 }
 
+// Two side-by-side CTAs share the row on phones; the slimmer padding keeps both on one line down to 360px
+export const pairedButton = "whitespace-nowrap max-md:flex-1 max-md:px-2.5";
+
 export default function Button({ href = "#", variant = "primary", size = "lg", icon, className = "", onClick, children }: Props) {
-  const base = "inline-flex items-center justify-center rounded-lg text-base leading-6 transition-colors";
+  // CTAs fill the width on phones (client feedback, 5 Nov 2026); a pair overrides this to share one row
+  const base = "inline-flex items-center justify-center rounded-lg text-base leading-6 transition-colors max-md:w-full";
   const sizes = {
     primary: { md: "gap-1 px-4 py-2", lg: "gap-2 px-4 py-3" },
     secondary: { md: "gap-2.5 px-[19px] py-[7px]", lg: "gap-2.5 px-[19px] py-[11px]" },
